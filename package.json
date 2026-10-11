@@ -1,0 +1,36 @@
+{
+  "name": "qr-code-generator",
+  "version": "1.0.0",
+  "description": "Генератор QR-кодов с кастомизацией",
+  "main": "src/main.js",
+  "author": "Your Name",
+  "scripts": {
+    "start": "electron .",
+    "clean": "rimraf dist",
+    "build:win": "rimraf dist && electron-builder --win"
+  },
+  "build": {
+    "appId": "com.example.qrcodegenerator",
+    "productName": "QR Code Generator",
+    "directories": { "output": "dist" },
+    "files": ["src/**/*", "package.json"],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "dependencies": {
+    "qrcode": "^1.5.3",
+    "sharp": "^0.33.2"
+  },
+  "devDependencies": {
+    "electron": "^28.2.0",
+    "electron-builder": "^26.15.3",
+    "rimraf": "^5.0.5"
+  }
+}

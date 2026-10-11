@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Генератор QR-кодов</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+
+  <header class="titlebar">
+    <div class="titlebar-left">
+      <span class="app-title">Генератор QR-кодов</span>
+      <span class="app-subtitle">с кастомизацией</span>
+    </div>
+    <div class="titlebar-controls">
+      <button class="wc" id="wcMin" title="Свернуть"></button>
+      <button class="wc" id="wcMax" title="Развернуть"></button>
+      <button class="wc wc-close" id="wcClose" title="Закрыть"></button>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <section class="panel controls">
+
+      <div class="section">
+        <div class="section-head"><span class="idx">1</span><h2>Содержимое</h2></div>
+        <div class="field">
+          <label for="text">Текст или URL</label>
+          <textarea id="text" rows="4" placeholder="Введите текст, ссылку или любой контент"></textarea>
+          <div class="field-foot">
+            <span class="hint">Поддерживается кириллица и URL с параметрами</span>
+            <span class="counter" id="counter">0 / 2000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><span class="idx">2</span><h2>Внешний вид</h2></div>
+        <div class="grid-2">
+          <div class="field">
+            <label>Цвет модулей</label>
+            <div class="color-input">
+              <input type="color" id="colorDark" value="#000000" />
+              <span class="color-value" id="colorDarkVal">#000000</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Цвет фона</label>
+            <div class="color-input">
+              <input type="color" id="colorLight" value="#ffffff" />
+              <span class="color-value" id="colorLightVal">#ffffff</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Уровень коррекции</label>
+          <div class="segmented" id="levelGroup">
+            <button type="button" class="seg" data-value="L">L<span>~7%</span></button>
+            <button type="button" class="seg is-active" data-value="M">M<span>~15%</span></button>
+            <button type="button" class="seg" data-value="Q">Q<span>~25%</span></button>
+            <button type="button" class="seg" data-value="H">H<span>~30%</span></button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="slider-head">
+            <label for="size">Размер изображения</label>
+            <span class="pill" id="sizeVal">400 px</span>
+          </div>
+          <input type="range" id="size" min="200" max="1000" step="50" value="400" />
+          <div class="slider-scale"><span>200</span><span>1000</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><span class="idx">3</span><h2>Логотип в центре</h2></div>
+        <div class="row">
+          <button id="pickLogo" class="btn btn-ghost">Загрузить PNG</button>
+          <button id="clearLogo" class="btn btn-ghost" disabled>Убрать</button>
+        </div>
+        <div class="logo-info" id="logoInfo" hidden></div>
+        <div class="field">
+          <div class="slider-head">
+            <label for="logoRatio">Размер логотипа</label>
+            <span class="pill" id="logoRatioVal">20 %</span>
+          </div>
+          <input type="range" id="logoRatio" min="5" max="50" step="1" value="20" />
+          <div class="slider-scale"><span>5%</span><span>50%</span></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="generate" class="btn btn-primary" disabled>Сгенерировать</button>
+        <button id="save" class="btn btn-accent" disabled>Сохранить</button>
+        <button id="reset" class="btn btn-ghost">Очистить</button>
+      </div>
+    </section>
+
+    <section class="panel preview">
+      <div class="section-head"><span class="idx">4</span><h2>Предпросмотр</h2></div>
+      <div class="stage" id="stage">
+        <div class="placeholder" id="placeholder">
+          <p>QR-код появится здесь</p>
+          <span>Заполните поля и нажмите «Сгенерировать»</span>
+        </div>
+        <img id="preview" alt="QR-код" hidden />
+      </div>
+      <div class="meta" id="meta" hidden>
+        <div><span>Размер</span><b id="metaSize">—</b></div>
+        <div><span>Уровень</span><b id="metaLevel">—</b></div>
+        <div><span>Логотип</span><b id="metaLogo">—</b></div>
+      </div>
+      <div class="status" id="status" hidden></div>
+    </section>
+  </main>
+</div>
+<script src="renderer.js"></script>
+</body>
+</html>

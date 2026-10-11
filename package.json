@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Генератор QR-кодов с кастомизацией",
   "main": "src/main.js",
-  "author": "Your Name",
+  "author": "Oneyann",
+  "license": "MIT",
   "scripts": {
     "start": "electron .",
     "clean": "rimraf dist",
